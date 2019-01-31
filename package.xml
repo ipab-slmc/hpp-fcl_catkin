@@ -13,4 +13,5 @@
   <depend>octomap</depend>
   <depend>eigen</depend>
   <depend>boost</depend>
+  <depend>assimp</depend>
 </package>
