@@ -10,7 +10,7 @@ include(ExternalProject)
 
 ExternalProject_Add(hpp-fcl_src
   GIT_REPOSITORY "https://github.com/humanoid-path-planner/hpp-fcl.git"
-  GIT_TAG "v4.3.0"
+  GIT_TAG "v1.0.0"
 
   CMAKE_ARGS -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=${PROJECT_BINARY_DIR}/install
 )
