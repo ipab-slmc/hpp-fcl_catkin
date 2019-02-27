@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>hpp-fcl</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>HPP fork of FCL with bug fixes.</description>
   <maintainer email="wolfgang.merkt@ed.ac.uk">Wolfgang Merkt</maintainer>
   <license>BSD</license>
