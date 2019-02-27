@@ -31,7 +31,7 @@ if(IS_DIRECTORY ${CMAKE_INSTALL_PREFIX})
   )
 else()
   message(STATUS "Compiling for devel workspace")
-  file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/hpp)
+  file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/hpp/fcl)
   catkin_package(
     INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include/${PROJECT_NAME}/
     LIBRARIES hpp-fcl ${ASSIMP_LIBRARIES}
