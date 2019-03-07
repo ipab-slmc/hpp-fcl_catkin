@@ -12,6 +12,8 @@ ExternalProject_Add(hpp-fcl_src
   GIT_REPOSITORY "https://github.com/humanoid-path-planner/hpp-fcl.git"
   GIT_TAG "v1.0.1"
 
+  UPDATE_COMMAND ""
+  TEST_COMMAND ""
   CMAKE_ARGS -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=${PROJECT_BINARY_DIR}/install -DCMAKE_INSTALL_LIBDIR=lib
 )
 ExternalProject_Add_Step(hpp-fcl_src CopyToDevel
@@ -24,18 +26,18 @@ ExternalProject_Add_Step(hpp-fcl_src CopyToDevel
 if(IS_DIRECTORY ${CMAKE_INSTALL_PREFIX})
   message(STATUS "Compiling for install workspace (${CMAKE_INSTALL_PREFIX})")
   catkin_package(
-    INCLUDE_DIRS include/${PROJECT_NAME}/
+    INCLUDE_DIRS include/${PROJECT_NAME}
     LIBRARIES hpp-fcl ${ASSIMP_LIBRARIES}
-    # DEPENDS Boost OCTOMAP ASSIMP
+    # DEPENDS Boost OCTOMAP # ASSIMP => Including this breaks our logic to expose "hpp" as include directory hpp-fcl 
     CFG_EXTRAS hpp-fcl.cmake
   )
 else()
   message(STATUS "Compiling for devel workspace")
   file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include/${PROJECT_NAME}/hpp/fcl)
   catkin_package(
-    INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include/${PROJECT_NAME}/
+    INCLUDE_DIRS ${CATKIN_DEVEL_PREFIX}/include/${PROJECT_NAME}
     LIBRARIES hpp-fcl ${ASSIMP_LIBRARIES}
-    # DEPENDS Boost OCTOMAP ASSIMP
+    # DEPENDS Boost OCTOMAP # ASSIMP
     CFG_EXTRAS hpp-fcl.cmake
   )
 endif()

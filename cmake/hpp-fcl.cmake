@@ -1,11 +1,14 @@
 # The headers are in hpp/fcl/. This project makes this hpp-fcl/hpp/fcl.
 # We still need to expose "hpp/fcl/" as the include path:
 set(hpp-fcl_INCLUDE_DIRS "${hpp-fcl_INCLUDE_DIRS}/hpp-fcl")
-include_directories(${hpp-fcl_INCLUDE_DIRS})
 
 # Export definitions that are required
 find_package(assimp REQUIRED)
 if(assimp_FOUND)
+  # Assimp is broken on 18.04:
+  # Cf. https://github.com/assimp/assimp/issues/2247  
+  include_directories(${ASSIMP_INCLUDE_DIRS} /usr/include)
+  list(APPEND ${hpp-fcl_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS} /usr/include)
   if (NOT ${assimp_VERSION} VERSION_LESS "2.0.1150")
     add_definitions(-DFCL_USE_ASSIMP_UNIFIED_HEADER_NAMES)
     SET(WITH_FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES TRUE)
@@ -24,3 +27,5 @@ if(octomap_FOUND)
 else()
     message(FATAL_ERROR "Octomap not found")
 endif()
+
+include_directories(${hpp-fcl_INCLUDE_DIRS})
